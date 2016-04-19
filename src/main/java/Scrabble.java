@@ -1,11 +1,36 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.HashMap;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
 
 public class Scrabble {
-  public static void main(String[] args) {}
+  public static void main(String[] args) {
+    String layout = "templates/layout.vtl";
 
-    public Integer scrabbleScore(String input) {
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/scrabble.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/output", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/output.vtl");
+
+      String words = request.queryParams("words");
+      Integer scrabbleScore = scrabbleScore(words);
+
+      model.put("words", words);
+      model.put("scrabbleScore", scrabbleScore);
+      model.put("words", request.queryParams("words"));
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+  }
+
+    public static Integer scrabbleScore(String input) {
       Integer score = 0;
       input = input.toLowerCase();
 
