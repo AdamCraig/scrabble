@@ -1,13 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Scrabble {
   public static void main(String[] args) {}
 
     public Integer scrabbleScore(String input) {
-      // String inputtedCharacters = input;
-      // char[] inputtedCharactersArray = inputtedCharacters.toCharArray();
-      //
       Integer score = 0;
 
       HashMap<Character, Integer> letterScores = new HashMap<Character, Integer>();
@@ -38,13 +36,15 @@ public class Scrabble {
       letterScores.put('q', 10);
       letterScores.put('z', 10);
 
-      score = letterScores.get(input.charAt(0));
+      char[] inputtedCharactersArray = input.toCharArray();
 
-      // for (Integer index = 0; index <= inputtedCharactersArray.length; index++) {
-      //   if (inputtedCharactersArray[index].keySet('a')) {
-      //     score += inputtedCharactersArray[index].values();
-      //   }
-      // }
+      for (Integer index = 0; index < inputtedCharactersArray.length; index++) {
+        for ( Character key : letterScores.keySet() ) {
+          if ( key == inputtedCharactersArray[index] ) {
+            score += letterScores.get(key);
+          }
+        }
+      }
       return score;
     }
 }
