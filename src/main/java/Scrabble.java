@@ -7,6 +7,7 @@ public class Scrabble {
 
     public Integer scrabbleScore(String input) {
       Integer score = 0;
+      input = input.toLowerCase();
 
       HashMap<Character, Integer> letterScores = new HashMap<Character, Integer>();
       letterScores.put('a', 1);

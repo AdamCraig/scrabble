@@ -17,4 +17,18 @@ public class ScrabbleTest {
     assertEquals(expected, testScrabble.scrabbleScore("cat"));
   }
 
+  @Test
+  public void scrabbleScore_returnsScoreForSentenceWithSpaces_score() {
+  Scrabble testScrabble = new Scrabble();
+  Integer expected = 17;
+  assertEquals(expected, testScrabble.scrabbleScore("kitty cat"));
+  }
+
+  @Test
+  public void scrabbleScore_returnsScoreForSentenceWithCapitalLetters_score() {
+  Scrabble testScrabble = new Scrabble();
+  Integer expected = 15;
+  assertEquals(expected, testScrabble.scrabbleScore("DOG WOOF"));
+  }
+
 }
