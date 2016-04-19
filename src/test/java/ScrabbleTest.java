@@ -6,8 +6,8 @@ public class ScrabbleTest {
   @Test
   public void scrabbleScore_returnsScoreForSingleLetter_score() {
     Scrabble testScrabble = new Scrabble();
-    Integer expected = 1;
-    assertEquals(expected, testScrabble.scrabbleScore("a"));
+    Integer expected = 10;
+    assertEquals(expected, testScrabble.scrabbleScore("z"));
   }
 
 }
